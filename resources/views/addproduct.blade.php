@@ -21,7 +21,7 @@
                 <label for="exampleInputEmail1">Price: </label>
                 {{ Form::text('txtprice',null,['class' => 'form-control'])}}
             </div>
-            <div class="form-group">
+            <div class="form-group"> 
                 <label for="exampleInputEmail1">Quantity: </label>
                 {{ Form::text('txtqty',null,['class' => 'form-control'])}}
             </div>
