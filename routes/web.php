@@ -102,6 +102,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/uploadfile',[App\Http\Controllers\UploadFileController::class, 'index']);
 Route::post('/uploadfile',[App\Http\Controllers\UploadFileController::class, 'showUploadFile']);
+
+Route::get('/cart',[App\Http\Controllers\CartController::class, 'AddToCart']);
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
