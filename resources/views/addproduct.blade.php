@@ -17,7 +17,7 @@
                     <option value="4">Skin Care</option>
                     </select>
             </div>
-            <div class="form-group">
+            <div class="form-group"> 
                 <label for="exampleInputEmail1">Price: </label>
                 {{ Form::text('txtprice',null,['class' => 'form-control'])}}
             </div>
