@@ -8,7 +8,7 @@
                 <label for="exampleInputEmail1">Product Name: </label>
                 {{ Form::text('txtname',null,['class' => 'form-control'])}}
             </div>
-            <div class="form-group">
+            <div class="form-group"> 
                 <label for="exampleInputEmail1">Category: </label>
                 <select class="form-control" id="category" name="category">
                     <option value="1">Men</option>
