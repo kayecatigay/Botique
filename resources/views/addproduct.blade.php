@@ -1,7 +1,7 @@
 @extends('dashboard')
 @section('content')
 
-    <div class="container px-4 px-lg-5 mt-5">    
+    <div class="container px-4 px-lg-5 mt-5">      
               
         {{ Form::open(array('url' => '/uploadfile','files'=>'true'))}}
             <div class="form-group">
