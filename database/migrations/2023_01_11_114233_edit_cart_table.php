@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Products extends Migration
+class EditCartTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class Products extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        
+        Schema::table('cart', function (Blueprint $table) {
             $table->id();
-            $table->string('productname');
-            $table->float('price');
+            $table->unsignedInteger('product_id')->nullable();
+            $table->foreign('product_id')->references('id')->on('products');
             $table->integer('quantity');
+            $table->integer('userid');
             $table->timestamps();
+
         });
+        
     }
 
     /**
