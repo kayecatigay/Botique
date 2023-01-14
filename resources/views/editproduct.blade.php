@@ -2,7 +2,7 @@
 @section('content')
     <form action ="updateproduct" method="get" enctype="multipart/form-data">
         
-            <input type="hidden" class="form-control" id="txtid" name="txtid"  placeholder="Enter Product Name" value={{$prod[0]->productid}} >   
+            <input type="hidden" class="form-control" id="txtid" name="txtid"  placeholder="Enter Product Name" value={{$prod[0]->id}} >   
             <label for="exampleInputEmail1">Product Name: </label>
             <input type="text" class="form-control" id="txtname" name="txtname"  placeholder="Enter Product Name" value={{$prod[0]->productname}} ><br>   
             

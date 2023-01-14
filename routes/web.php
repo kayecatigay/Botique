@@ -73,14 +73,14 @@ Route::get('/insertproduct', function (Request $request) {
 
 Route::get('/editproduct', function (Request $request) {
     $prodid=$request->input('txtid');
-    $prod = DB::select('select * from products where productid=' .$prodid);
+    $prod = DB::select('select * from products where id=' .$prodid);
     //dd($prod);
     return view('editproduct',['prod'=>$prod]);
     
 });
 
 Route::get('/updateproduct', function (Request $request) {
-   $updatedb=DB::update('update products set productname="' .$request->input('txtname') .'",category=' .$request->input('category') .',price=' .$request->input('txtprice') .',quantity=' .$request->input('txtqty') .' where productid=' .$request->input('txtid') .' ');
+   $updatedb=DB::update('update products set productname="' .$request->input('txtname') .'",category=' .$request->input('category') .',price=' .$request->input('txtprice') .',quantity=' .$request->input('txtqty') .' where id=' .$request->input('txtid') .' ');
    // return $name;
    //DB::insert('insert into products(productname,price,quantity) values("dog",34,5)');
    $products = DB::select('select * from products');

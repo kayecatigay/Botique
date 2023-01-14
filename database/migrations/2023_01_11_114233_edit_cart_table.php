@@ -18,7 +18,7 @@ class EditCartTable extends Migration
             $table->id();
             $table->unsignedInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('quantity');
+            $table->integer('cart_quantity');
             $table->integer('userid');
             $table->timestamps();
 

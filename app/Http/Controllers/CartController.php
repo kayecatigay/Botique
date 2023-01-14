@@ -11,9 +11,19 @@ class CartController extends Controller
 {
     public function AddToCart()
     {
-        $cartlist = DB::select('select * from cart where userid=' .Auth()->user()->id);
-        //dd($cartlist);
-        return view('cart',['cart'=>$cartlist]);
-        // return view('home');
+        if(isset(Auth()->user()->id))
+        {
+            // $cartlist = DB::select('select * from cart where userid=' .Auth()->user()->id);
+            $cartlist = DB::table('cart')
+                ->join('products', 'products.id', '=', 'cart.product_id')
+                ->where('userid', Auth()->user()->id)
+                ->get();
+            // dd($cartlist);
+            return view('cart',['cart'=>$cartlist]);
+            // return view('home');
+        }
+        else
+        { return redirect('/');    }
+        
     }
 }

@@ -17,7 +17,7 @@
         <tbody>
         @foreach ($products as $prd)
             <tr>
-                <th scope="row">{{ $prd->productid }}</th>
+                <th scope="row">{{ $prd->id }}</th>
                 <td>{{ $prd->productname }}</td>
                 <td>{{ $prd->category }}</td>
                 <td>{{ $prd->price }}</td>
@@ -25,7 +25,7 @@
                 <td><img src="uploads/{{ $prd->image }}" width="100" height="100" /></td>
                 <td>
                     <form action ="editproduct" method="get" enctype="multipart/form-data">
-                        <input type="hidden" id="txtid" name="txtid" value="{{ $prd->productid }}"><br> 
+                        <input type="hidden" id="txtid" name="txtid" value="{{ $prd->id }}"><br> 
                         <input type="submit" class="btn btn-info" value="Edit" name="submit">
                     </form>
                 </td>
