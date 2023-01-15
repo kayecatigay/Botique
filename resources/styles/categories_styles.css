@@ -1443,7 +1443,7 @@ section
 }
 .add_to_cart_button
 {
-	width: 100%;
+	width: 120%;
 	visibility: hidden;
 	opacity: 0;
 	-webkit-transition: all 0.3s ease;
