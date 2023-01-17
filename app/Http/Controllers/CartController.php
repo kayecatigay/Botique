@@ -26,4 +26,10 @@ class CartController extends Controller
         { return redirect('/');    }
         
     }
+
+    public function SaveCart(Request $request) { 
+        //dd(Auth()->user()->id); 
+        DB::insert('insert into cart(product_id,cart_quantity,userid) values(' .$request->input('id') .',1,' .Auth()->user()->id .')');
+        return redirect('/');
+     }
 }

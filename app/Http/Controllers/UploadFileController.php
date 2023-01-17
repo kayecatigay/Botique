@@ -11,7 +11,7 @@ class UploadFileController extends Controller {
    public function index() {
       return view('uploadfile');
    }
-   public function showUploadFile(Request $request) {
+   public function showUploadFile(Request $request) {  
       $file = $request->file('image');
       //Move Uploaded File
       $destinationPath = 'uploads';

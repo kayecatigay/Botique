@@ -4,7 +4,7 @@
 <br><br><br><br><br>
 
 
-
+{{ Form::open(array('url' => '')) }}
   <section class="h-100 h-custom" style="background-color: #eee;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -29,7 +29,7 @@
                           class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
                     </div> -->
                   </div>
-                  {{ $subtotal = 0 }}
+                  @php($subtotal=0)
                   @foreach ($cart as $crt)
                       <div class="card mb-3">
                         <div class="card-body">
@@ -42,17 +42,18 @@
                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                 </div>
                                 <div class="ms-3">
-                                <h5>&nbsp;{{ $crt->productname }}</h5>
+                                  {{ Form::hidden('id',$crt->id)}}
+                                  <h5>&nbsp;{{ $crt->productname }}</h5>
                                 <!-- <p class="small mb-0">256GB, Navy Blue</p> -->
                                 </div>
                             </div>
 
                             <div class="d-flex flex-row align-items-center">
-                                <div style="width: 50px;">
-                                <h5 class="fw-normal mb-0">{{ $crt->cart_quantity }}</h5>
+                                <div style="width: 80px;">
+                                  {{ Form::number('cart_quantity',$crt->cart_quantity,['class' => 'form-control'])}}
                                 </div>
                                 <div style="width: 80px;">
-                                <h5 class="mb-0">{{ number_format($crt->price,2) }}</h5>
+                                <h5 class="mb-0">&nbsp;{{ number_format($crt->price,2) }}</h5>
                                 </div>
                                 <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                             </div>
@@ -60,7 +61,7 @@
                           </div>
                         </div>
                       </div>
-                      {{ $subtotal=$subtotal+$crt->price }}
+                      @php($subtotal=$subtotal+$crt->price)
                   @endforeach
                 
 
@@ -86,7 +87,7 @@
 
                       <form class="mt-4">
                         <div class="form-outline form-white mb-4">
-                          <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                          <input type="text" id="typeName" class="form-control form-control-lg" size="17"
                             value="{{ Auth::user()->address }}" />
                           <label class="form-label" for="typeName">Address</label>
                         </div>
@@ -116,24 +117,24 @@
 
                       </form>
 
-                      <hr class="my-4"style="background-color: #eee;">
-
+                      <hr class="my-4" >
+                        
                         <div class="d-flex justify-content-between" >
-                          <p class="mb-2">Subtotal</p>
-                          <p class="mb-2">Php {{ number_format($subtotal,2) }}</p>
+                          <p class="mb-0 text-white">Subtotal</p>
+                          <p class="mb-2 text-white">Php {{ number_format($subtotal,2) }}</p>
                         </div>
 
                         <div class="d-flex justify-content-between">
-                          <p class="mb-2">Shipping</p>
-                          <p class="mb-2">Php 75.00</p>
+                          <p class="mb-2 text-white">Shipping</p>
+                          <p class="mb-2 text-white">Php 75.00</p>
                         </div>
 
                         <div class="d-flex justify-content-between mb-4">
-                          <p class="mb-2">Total</p>
-                          <p class="mb-2">Php {{ number_format($subtotal+75,2) }}</p>
+                          <p class="mb-2 text-white">Total</p>
+                          <p class="mb-2 text-white">Php {{ number_format($subtotal+75,2) }}</p>
                         </div>
 
-                        <button type="button" class="btn btn-info btn-block btn-lg">
+                        <button type="submit" class="btn btn-info btn-block btn-lg">
                           <div class="d-flex justify-content-between">
                             <span>Php {{ number_format($subtotal+75,2) }}</span>
                             <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
@@ -153,5 +154,6 @@
       </div>
     </div>
   </section>
-
+  
+{{ Form::close() }}
 @stop

@@ -190,21 +190,31 @@
 						<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
 							@if(isset($products))
 								<!-- Products -->
-								@foreach ($products as $prd)
-								<div class="product-item men">
-									<div class="product product_filter">
-										<div class="product_image">
-											<img src="uploads/{{ $prd->image }}" alt="">
+								{{ Form::open(array('url' => '/SavetoCart')) }}
+									@foreach ($products as $prd)
+									<div class="product-item men">
+										<div class="product product_filter">
+											<div class="product_image">
+												<img src="uploads/{{ $prd->image }}" alt="">
+											</div>
+											<div class="favorite"></div>
+											<div class="product_info">
+												<h6 class="product_name"><a href="single.html">{{$prd->productname}}</a></h6>
+												<div class="product_price">Php {{number_format($prd->price,2) }}</div>
+											</div>
 										</div>
-										<div class="favorite"></div>
-										<div class="product_info">
-											<h6 class="product_name"><a href="single.html">{{$prd->productname}}</a></h6>
-											<div class="product_price">Php {{number_format($prd->price,2) }}</div>
+										<div class="red_button add_to_cart_button">
+											{{ Form::hidden('id',$prd->id)}}
+											<button type="submit" class="red_button add_to_cart_button">Add to Cart</button>
+										</div>
+											
+										<div>
+
 										</div>
 									</div>
-									<div class="red_button add_to_cart_button"><a href="cart">add to cart</a></div>
-								</div>
-								@endforeach
+									@endforeach
+								{{ Form::close() }}
+
 							@endif
 						</div>
 					</div>
