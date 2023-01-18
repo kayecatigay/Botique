@@ -67,6 +67,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'address' => $data['address'],
+            'contact_num' => $data['contact'],
             'password' => Hash::make($data['password']),
             'role' => 0,
         ]);
