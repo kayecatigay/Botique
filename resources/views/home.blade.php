@@ -103,7 +103,7 @@
 								<li class="checkout">
 									<a href="cart">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" class="checkout_items"></span>
+										<span id="checkout_items" class="checkout_items">{{ $countcart }}</span>
 									</a>
 								</li>
 							</ul>
@@ -190,7 +190,7 @@
 						<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
 							@if(isset($products))
 								<!-- Products -->
-								{{ Form::open(array('url' => '/SavetoCart')) }}
+								
 									@foreach ($products as $prd)
 									<div class="product-item men">
 										<div class="product product_filter">
@@ -204,8 +204,10 @@
 											</div>
 										</div>
 										<div class="red_button add_to_cart_button">
-											{{ Form::hidden('id',$prd->id)}}
-											<button type="submit" class="red_button add_to_cart_button">Add to Cart</button>
+											{{ Form::open(array('url' => '/SavetoCart')) }}
+												{{ Form::hidden('id',$prd->id)}}
+												<button type="submit" class="red_button add_to_cart_button">Add to Cart</button>
+											{{ Form::close() }}
 										</div>
 											
 										<div>
@@ -213,7 +215,7 @@
 										</div>
 									</div>
 									@endforeach
-								{{ Form::close() }}
+								
 
 							@endif
 						</div>

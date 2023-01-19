@@ -25,7 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         $products = DB::select('select * from products');
-        return view('home',['products'=>$products]);
+        $cart = DB::select("select * from cart where  userid = " .Auth()->user()->id );
+        // dd($cart);
+        return view('home',['products'=>$products,'countcart'=>count($cart)]);
         // return view('home');
     }
 }

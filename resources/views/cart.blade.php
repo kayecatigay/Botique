@@ -55,8 +55,9 @@
                                 <div style="width: 80px;">
                                 <h5 class="mb-0">&nbsp;{{ number_format($crt->price,2) }}</h5>
                                 </div>
-                                <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                <a href="#!" style="color: #cecece;"><i class="fa fa-trash text-danger"></i></a>
                             </div>
+                            
 
                           </div>
                         </div>
