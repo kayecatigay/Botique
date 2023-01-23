@@ -44,6 +44,11 @@ Route::get('/test', function () {
     return view('bootstrap');
 });
 
+Route::get('/gmaps', function () {
+    
+    return view('gmaps');
+});
+
 Route::get('/users', function () {
     $users = DB::select('select * from users ');
     //dd($users);

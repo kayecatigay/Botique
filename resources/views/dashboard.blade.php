@@ -158,6 +158,13 @@
                                     <span class="hide-menu">Products</span>
                                 </a>
                             </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="gmaps"
+                                    aria-expanded="false">
+                                    <i class="fa fa-font" aria-hidden="true"></i>
+                                    <span class="hide-menu">Google Maps</span>
+                                </a>
+                            </li>
                             
                         </ul>
 
@@ -210,7 +217,7 @@
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                 <div class="white-box">
-                                    <h3 class="box-title">Products Yearly Sales</h3>
+                                    <h3 class="box-title">Products Monthly Sales</h3>
                                     <div class="d-md-flex">
                                         
                                     </div>
