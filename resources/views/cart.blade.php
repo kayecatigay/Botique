@@ -24,10 +24,12 @@
                       <p class="mb-1">Shopping cart</p>
                       <p class="mb-0">You have {{ count($cart) }}  items in your cart</p>
                     </div>
+                    
                     <!-- <div>
                       <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
                           class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
                     </div> -->
+
                   </div>
                   @php($subtotal=0)
                   @foreach ($cart as $crt)
@@ -76,7 +78,13 @@
                         <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                           class="img-fluid rounded-3" style="width: 45px;" alt="Avatar"> -->
                       </div>
-
+                      <h5>Payment Type: </h5>
+                      <select class="form-control">
+                        <option>COD</option>
+                        <option disabled>Gcash</option>
+                        <option disabled>Maya</option>
+                      </select>
+                      <br>
                       <h5 class="mb-2">User: {{ Auth::user()->name }}</h5>
                       <!-- <a href="#!" type="submit" class="text-white"><i
                           class="fab fa-cc-mastercard fa-2x me-2"></i></a>
@@ -138,7 +146,7 @@
                         <button type="submit" class="btn btn-info btn-block btn-lg">
                           <div class="d-flex justify-content-between">
                             <span>Php {{ number_format($subtotal+75,2) }}</span>
-                            <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                            <span> <a href="/test" class="text-white "> Checkout <i class="fas fa fa-arrow-right ms-2"></i></a></span>
                           </div>
                         </button>
                       </hr>

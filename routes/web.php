@@ -20,8 +20,16 @@ use Illuminate\Http\UploadedFile;
 
 Route::get('/', function () {
     $products = DB::select('select * from products');
-    $cart = DB::select("select * from cart where  userid = " .Auth()->user()->id );
-    return view('home',['products'=>$products,'countcart'=>count($cart)]);
+    if(Auth()->user())
+    {
+        $cart = DB::select("select * from cart where  userid = " .Auth()->user()->id );
+        return view('home',['products'=>$products,'countcart'=>count($cart)]);
+            
+    }
+    else
+    {
+        return view('home',['products'=>$products]);
+    }
 });
 
 Route::get('/category/{catid}', function ($catid) {
