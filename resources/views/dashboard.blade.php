@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="css/style.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
@@ -221,10 +222,34 @@
                                     <div class="d-md-flex">
                                         
                                     </div>
-                                    <div id="ct-visits" style="height: 405px;">
-                                        <div class="chartist-tooltip" style="top: -17px; left: -12px;"><span
-                                                class="chartist-tooltip-value">6</span>
-                                        </div>
+                                    <div>   
+                                        <canvas id="myChart" style="width:500%;max-width:700px"></canvas> 
+                                        <script>
+                                            var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+                                            var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+                                            new Chart("myChart", {
+                                            type: "line",
+                                            data: {
+                                                labels: xValues,
+                                                datasets: [{
+                                                fill: false,
+                                                lineTension: 0,
+                                                backgroundColor: "rgba(0,0,255,1.0)",
+                                                borderColor: "#000000",
+                                                data: yValues
+                                                }]
+                                            },
+                                            options: {
+                                                legend: {display: false},
+                                                scales: {
+                                                yAxes: [{ticks: {min: 6, max:16}}],
+                                                }
+                                            }
+                                            });
+                                        </script>
+
+                                        
                                     </div>
                                 </div>
                             </div>
