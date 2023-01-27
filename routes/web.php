@@ -120,6 +120,8 @@ Route::post('/uploadfile',[App\Http\Controllers\UploadFileController::class, 'sh
 Route::get('/cart',[App\Http\Controllers\CartController::class, 'AddToCart']);
 
 Route::post('/SavetoCart',[App\Http\Controllers\CartController::class, 'SaveCart']);
+
+Route::get('/checkout',[App\Http\Controllers\ProductsController::class, 'CheckOut']);
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

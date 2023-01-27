@@ -4,7 +4,7 @@
 <br><br><br><br><br>
 
 
-{{ Form::open(array('url' => '')) }}
+{{ Form::open(array('url' => '/checkout','method'=>'GET')) }}
   <section class="h-100 h-custom" style="background-color: #eee;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -67,7 +67,7 @@
                       @php($subtotal=$subtotal+$crt->price)
                   @endforeach
                 
-
+                  <input type="text" > <input type="text" >  <input type="text"> 
                 </div>
                 <div class="col-lg-5" >
 
@@ -78,16 +78,20 @@
                         <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                           class="img-fluid rounded-3" style="width: 45px;" alt="Avatar"> -->
                       </div>
-                      <h5>Payment Type: </h5>
+                      <input type="text" id="payment" name="payment" class="form-control form-control-lg" size="17"
+                             value="" minlength="19" maxlength="19" /> 
+                      <label class="form-label" for="typeText" ><h5 class="mb-2">Payment Type:</h5></label>
                       <select class="form-control">
                         <option>COD</option>
                         <option disabled>Gcash</option>
                         <option disabled>Maya</option>
                       </select>
                       <br>
-                      <h5 class="mb-2">User: {{ Auth::user()->name }}</h5>
+                      <input type="text" id="userid" name="userid" class="form-control form-control-lg" size="17"
+                             value="{{ Auth::user()->id }}"minlength="19" maxlength="19" /> 
+                      <label class="form-label" for="typeText" ><h5 class="mb-2">User:{{ Auth::user()->name }}</h5></label>
                       <!-- <a href="#!" type="submit" class="text-white"><i
-                          class="fab fa-cc-mastercard fa-2x me-2"></i></a>
+                          class="fab fa-cc-mastercard fa-2x me-2"></i></a>s
                       <a href="#!" type="submit" class="text-white"><i
                           class="fab fa-cc-visa fa-2x me-2"></i></a>
                       <a href="#!" type="submit" class="text-white"><i
@@ -96,13 +100,13 @@
 
                       <form class="mt-4">
                         <div class="form-outline form-white mb-4">
-                          <input type="text" id="typeName" class="form-control form-control-lg" size="17"
+                          <input type="text" id="address" name="address" class="form-control form-control-lg" size="17"
                             value="{{ Auth::user()->address }}" />
                           <label class="form-label" for="typeName">Address</label>
                         </div>
 
                         <div class="form-outline form-white mb-4">
-                          <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                          <input type="text" id="contact" class="form-control form-control-lg" siez="17"
                             value="{{ Auth::user()->contact_num }}" minlength="19" maxlength="19" />
                           <label class="form-label" for="typeText">Contact Number</label>
                         </div>
@@ -146,7 +150,7 @@
                         <button type="submit" class="btn btn-info btn-block btn-lg">
                           <div class="d-flex justify-content-between">
                             <span>Php {{ number_format($subtotal+75,2) }}</span>
-                            <span> <a href="/test" class="text-white "> Checkout <i class="fas fa fa-arrow-right ms-2"></i></a></span>
+                            <span> Checkout <i class="fas fa fa-arrow-right ms-2"></i></span>
                           </div>
                         </button>
                       </hr>

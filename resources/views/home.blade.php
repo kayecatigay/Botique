@@ -103,7 +103,9 @@
 								<li class="checkout">
 									<a href="cart">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										{{ (isset($countcart)) ? '<span id="checkout_items" class="checkout_items">' .$countcart .'</span>' : "" }}
+										@if (isset($countcart)) 
+											 <span id="checkout_items" class="checkout_items"> {{ $countcart }} </span> 
+										@endif
 									</a>
 								</li>
 							</ul>
