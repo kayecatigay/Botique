@@ -121,6 +121,8 @@ Route::get('/cart',[App\Http\Controllers\CartController::class, 'AddToCart']);
 
 Route::post('/SavetoCart',[App\Http\Controllers\CartController::class, 'SaveCart']);
 
+Route::post('/deleteitem',[App\Http\Controllers\CartController::class, 'DeleteItem']);
+
 Route::get('/checkout',[App\Http\Controllers\ProductsController::class, 'CheckOut']);
 // Auth::routes();
 

@@ -28,7 +28,16 @@ class CartController extends Controller
         
     }
 
+    public function DeleteItem(Request $req){
+        DB::delete("DELETE FROM cart WHERE product_id = " .$req->input('id_delete') ." and userid = " .Auth()->user()->id);
+        return redirect('/cart');
+    }
+
     public function SaveCart(Request $request) { 
+        if(!isset(Auth()->user()->id))
+        {
+            return redirect('/login');
+        }
         //dd(Auth()->user()->id); 
         $sql = "select * from cart where product_id = ".$request->input('id') ." and userid = " .Auth()->user()->id ;
         $cart = DB::select($sql);
@@ -46,5 +55,7 @@ class CartController extends Controller
         
         //DB::insert('insert into cart(product_id,cart_quantity,userid) values(' .$request->input('id') .',1,' .Auth()->user()->id .')');
         return redirect('/');
-     }
+    }
+
+    
 }

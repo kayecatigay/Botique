@@ -2,7 +2,7 @@
 	@if( Auth::user()->role === 1)
 		<script>window.location.href = "dashboard";</script>
 	@endif 
-@endauth
+@endauth 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -93,7 +93,7 @@
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
-								<li><a href="home">home</a></li>
+								<li><a href="/">home</a></li>
 								<li><a href="#">shop</a></li>
 								<li><a href="contact.html">contact</a></li>
 							</ul>
