@@ -160,10 +160,10 @@
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="gmaps"
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="voucherlist"
                                     aria-expanded="false">
                                     <i class="fa fa-font" aria-hidden="true"></i>
-                                    <span class="hide-menu">Google Maps</span>
+                                    <span class="hide-menu">Voucher Codes</span>
                                 </a>
                             </li>
                             

@@ -19,106 +19,109 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
-
 <body>
  
 <div class="super_container">
 
 	<!-- Header -->
+	@section('header')
+		<header class="header trans_300">
 
-	<header class="header trans_300">
+			<!-- Top Navigation -->
 
-		<!-- Top Navigation -->
+			@section('top_nav')
+				<div class="top_nav">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="top_nav_left"></div>
+							</div>
+							<div class="col-md-6 text-right">
+								<div class="top_nav_right">
+									<ul class="top_nav_menu">
 
-		@section('top_nav')
-			<div class="top_nav">
+			
+										<li class="account">
+											<a href="#">
+												My Account
+												<i class="fa fa-angle-down"></i>
+											</a>
+											<ul class="account_selection">
+												@auth 
+													<li><i class="fa fa-user" aria-hidden="true"></i> 
+																									
+														{{ Auth::user()->name }}
+			
+													</li>
+													<li> 
+													<a class="dropdown-item" href="{{ route('logout') }}"
+														onclick="event.preventDefault();
+																	document.getElementById('logout-form').submit();">
+														{{ __('Logout') }}
+													</a>
+
+													<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+														@csrf
+													</form>
+													</li>
+												@endauth
+												
+												@guest
+													<li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+													<li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+												@endguest
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			@show
+
+			<!-- Main Navigation -->
+
+			<div class="main_nav_container">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-6">
-							<div class="top_nav_left"></div>
-						</div>
-						<div class="col-md-6 text-right">
-							<div class="top_nav_right">
-								<ul class="top_nav_menu">
-
-		
-									<li class="account">
-										<a href="#">
-											My Account
-											<i class="fa fa-angle-down"></i>
+						<div class="col-lg-12 text-right">
+							<div class="logo_container">
+								<a href="#">Pauline`s <span>Boutique</span></a>
+							</div>
+							<nav class="navbar">
+								<ul class="navbar_menu">
+									<li><a href="/">home</a></li>
+									<li><a href="shop">shop</a></li>
+									<li><a href="contact">contact</a></li>
+								</ul>
+								<ul class="navbar_user">
+									<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+									<li class="checkout">
+										<a href="cart">
+											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+											@if (isset($countcart)) 
+												@if ($countcart>0) 
+												<span id="checkout_items" class="checkout_items"> {{ $countcart }} </span> 
+												@endif	
+											@endif
 										</a>
-										<ul class="account_selection">
-											@auth 
-												<li><i class="fa fa-user" aria-hidden="true"></i> 
-																								
-													{{ Auth::user()->name }}
-		
-												</li>
-												<li> 
-												<a class="dropdown-item" href="{{ route('logout') }}"
-													onclick="event.preventDefault();
-																document.getElementById('logout-form').submit();">
-													{{ __('Logout') }}
-												</a>
-
-												<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-													@csrf
-												</form>
-												</li>
-											@endauth
-											
-											@guest
-												<li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-												<li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
-											@endguest
-										</ul>
 									</li>
 								</ul>
-							</div>
+								<div class="hamburger_container">
+									<i class="fa fa-bars" aria-hidden="true"></i>
+								</div>
+							</nav>
 						</div>
 					</div>
 				</div>
 			</div>
-		@show
 
-		<!-- Main Navigation -->
-
-		<div class="main_nav_container">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 text-right">
-						<div class="logo_container">
-							<a href="#">Pauline`s <span>Boutique</span></a>
-						</div>
-						<nav class="navbar">
-							<ul class="navbar_menu">
-								<li><a href="/">home</a></li>
-								<li><a href="#">shop</a></li>
-								<li><a href="contact.html">contact</a></li>
-							</ul>
-							<ul class="navbar_user">
-								<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-								<li class="checkout">
-									<a href="cart">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-										@if (isset($countcart)) 
-											 <span id="checkout_items" class="checkout_items"> {{ $countcart }} </span> 
-										@endif
-									</a>
-								</li>
-							</ul>
-							<div class="hamburger_container">
-								<i class="fa fa-bars" aria-hidden="true"></i>
-							</div>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</header>
+		</header>
+	@show
 
 	<div class="fs_menu_overlay"></div>
 	<div class="hamburger_menu">
@@ -136,8 +139,8 @@
 					</ul>
 				</li>
 				<li class="menu_item"><a href="home">home</a></li>
-				<li class="menu_item"><a href="#">shop</a></li>
-				<li class="menu_item"><a href="#">contact</a></li>
+				<li class="menu_item"><a href="shop">shop</a></li>
+				<li class="menu_item"><a href="contact">contact</a></li>
 			</ul>
 		</div>
 	</div>
@@ -164,68 +167,68 @@
 		
 
 		<!-- New Arrivals -->
-
-		<div class="new_arrivals">
-			<div class="container">
-				<div class="row">
-					<div class="col text-center">
-						<div class="section_title new_arrivals_title">
-							<h2>New Arrivals</h2>
+		@section('new arrivals')
+			<div class="new_arrivals">
+				<div class="container">
+					<div class="row">
+						<div class="col text-center">
+							<div class="section_title new_arrivals_title">
+								<h2>New Arrivals</h2>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row align-items-center">
-					<div class="col text-center">
-						<div class="new_arrivals_sorting">
-							<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*"><a href="/">all</a></li>
-								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men"><a href="/category/1">Men's</a></li>
-								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women"><a href="/category/2">Women's</a></li>
-								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories"><a href="/category/3">Accesories</a></li>
-								<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men"><a href="/category/4">Skin Care</a></li>
-							</ul>
+					<div class="row align-items-center">
+						<div class="col text-center">
+							<div class="new_arrivals_sorting">
+								<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+									<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*"><a href="/">all</a></li>
+									<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men"><a href="/category/1">Men's</a></li>
+									<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women"><a href="/category/2">Women's</a></li>
+									<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories"><a href="/category/3">Accesories</a></li>
+									<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men"><a href="/category/4">Skin Care</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-							@if(isset($products))
-								<!-- Products -->
-								
-									@foreach ($products as $prd)
-									<div class="product-item men">
-										<div class="product product_filter">
-											<div class="product_image">
-												<img src="uploads/{{ $prd->image }}" alt="">
+					<div class="row">
+						<div class="col">
+							<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+								@if(isset($products))
+									<!-- Products -->
+									
+										@foreach ($products as $prd)
+										<div class="product-item men">
+											<div class="product product_filter">
+												<div class="product_image">
+													<img src="uploads/{{ $prd->image }}" alt="">
+												</div>
+												<div class="favorite"></div>
+												<div class="product_info">
+													<h6 class="product_name"><a href="single.html">{{$prd->productname}}</a></h6>
+													<div class="product_price">Php {{number_format($prd->price,2) }}</div>
+												</div>
 											</div>
-											<div class="favorite"></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">{{$prd->productname}}</a></h6>
-												<div class="product_price">Php {{number_format($prd->price,2) }}</div>
+											<div class="red_button add_to_cart_button">
+												{{ Form::open(array('url' => '/SavetoCart')) }}
+													{{ Form::hidden('id',$prd->id)}}
+													<button type="submit" class="red_button add_to_cart_button">Add to Cart</button>
+												{{ Form::close() }}
+											</div>
+												
+											<div>
+
 											</div>
 										</div>
-										<div class="red_button add_to_cart_button">
-											{{ Form::open(array('url' => '/SavetoCart')) }}
-												{{ Form::hidden('id',$prd->id)}}
-												<button type="submit" class="red_button add_to_cart_button">Add to Cart</button>
-											{{ Form::close() }}
-										</div>
-											
-										<div>
+										@endforeach
+									
 
-										</div>
-									</div>
-									@endforeach
-								
-
-							@endif
+								@endif
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
+		@show
 		<!-- Deal of the week -->
 
 		<div class="deal_ofthe_week">
@@ -326,8 +329,8 @@
 				<div class="col-lg-6">
 					<div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
 						<ul class="footer_nav">
-							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">Contact us</a></li>
+							
+							<li><a href="contact">Contact us</a></li>
 						</ul>
 					</div>
 				</div>

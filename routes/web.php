@@ -79,6 +79,10 @@ Route::get('/addproduct', function () {
     return view('addproduct');
 });
 
+Route::get('/addvoucher', function () {
+    return view('addvoucher');
+});
+
 Route::get('/insertproduct', function (Request $request) {
     DB::insert('insert into products(productname,price,quantity,image,category) values("' .$request->input('txtname') .'",' .$request->input('txtprice') .',' .$request->input('txtqty') .',"' .$request->input('txtupload') .'","' .$request->input('category') .'") ');
     return redirect('/productlist');
@@ -102,12 +106,38 @@ Route::get('/updateproduct', function (Request $request) {
 // return 'update products set productname="' .$request->input('txtname') .'",price=' .$request->input('txtprice') .',quantity=' .$request->input('txtqty') .' where productid=' .$request->input('txtid') .' ';
 });
 
-Route::get('/gmaps', function () {
-    return view('gmaps');
+Route::get('/voucherlist', function () {
+    $vouchers = DB::select('select * from vouchers');
+    //dd($products);
+    return view('voucher',['voucher'=>$vouchers]);
 });
+
+Route::get('/editvoucher', function (Request $request) {
+    $vchrid=$request->input('vchrid');
+    $voucher = DB::select('select * from vouchers where id=' .$vchrid);
+    //dd($prod);
+    return view('editvoucher',['voucher'=>$voucher]); 
+});
+
+Route::get('/updatevoucher', function (Request $request) {
+    $updatedb=DB::update('update vouchers set Vcode="' .$request->input('vcode') .'",Vname="' .$request->input('vname') .'",Vpercentage=' .$request->input('vperc') .' ');
+    // return $name;
+    //DB::insert('insert into products(productname,price,quantity) values("dog",34,5)');
+    $vouchers = DB::select('select * from vouchers');
+    return view('voucher',['voucher'=>$vouchers]);
+ // return 'update products set productname="' .$request->input('txtname') .'",price=' .$request->input('txtprice') .',quantity=' .$request->input('txtqty') .' where productid=' .$request->input('txtid') .' ';
+ });
 
 Route::get('/return', function () {
     return view('return');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/shop', function () {
+    return view('shop');
 });
 
 Auth::routes();
@@ -117,6 +147,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/uploadfile',[App\Http\Controllers\UploadFileController::class, 'index']);
 Route::post('/uploadfile',[App\Http\Controllers\UploadFileController::class, 'showUploadFile']);
 
+Route::get('/uploadvoucher',[App\Http\Controllers\UploadFileController::class, 'index2']);
+Route::post('/uploadvoucher',[App\Http\Controllers\UploadFileController::class, 'showVoucher']);
+
 Route::get('/cart',[App\Http\Controllers\CartController::class, 'AddToCart']);
 
 Route::post('/SavetoCart',[App\Http\Controllers\CartController::class, 'SaveCart']);
@@ -124,6 +157,8 @@ Route::post('/SavetoCart',[App\Http\Controllers\CartController::class, 'SaveCart
 Route::post('/deleteitem',[App\Http\Controllers\CartController::class, 'DeleteItem']);
 
 Route::get('/checkout',[App\Http\Controllers\ProductsController::class, 'CheckOut']);
+
+Route::get('/chkvoucher',[App\Http\Controllers\ProductsController::class, 'CheckVoucher']);
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

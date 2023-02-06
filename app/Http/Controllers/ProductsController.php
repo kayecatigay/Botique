@@ -16,6 +16,7 @@ class ProductsController extends Controller
         $allprice=explode("|*|",$allprice);
         $allqty=explode("|*|", $allqty);
         $allinsert="insert into orders(userid,ordernum,productname,price,quantity) values";
+        $totalamount=str_replace(",","",$request->input('totalnum'));
         $ordernum=Auth()->user()->id ."-"  .Date("d")  .Date("i");
         // dd($allprod);
         for ($x = 0; $x <= count($allprod)-2; $x++) {
@@ -23,11 +24,22 @@ class ProductsController extends Controller
           }
         $allinsert=substr($allinsert,0,-1);
         DB::insert($allinsert);
-        DB::insert("insert into sales(order_num,user_id,address,contact_num,payment_type,discount,total_num,date_sales) values('" .$ordernum  ."'," .Auth()->user()->id .",'"  .$request->input('address') ."','" .$request->input('contact') ."','" .$request->input('payment') ."'," .$request->input('discount') ."," .$request->input('totalnum') .",'" .Date("Y-m-d") ."')");
+        DB::insert("insert into sales(order_num,user_id,address,contact_num,payment_type,discount,total_num,date_sales) values('" .$ordernum  ."'," .Auth()->user()->id .",'"  .$request->input('address') ."','" .$request->input('contact') ."','" .$request->input('payment') ."'," .$request->input('discounttext') .","  .$totalamount .",'" .Date("Y-m-d") ."')");
         DB::delete("DELETE FROM cart WHERE userid = " .Auth()->user()->id);
 
         return redirect('/cart');  
 
+    }
+
+    public function CheckVoucher(Request $request)
+    {
+        $voucher = DB::select("select * from vouchers where  Vcode = '" .$request->input('discount') ."'");
+        
+        if($voucher)
+            { return $voucher[0];}
+        else
+            {return NULL;}
+            
     }
         
 }

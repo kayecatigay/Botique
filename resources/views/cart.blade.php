@@ -1,6 +1,45 @@
 @extends('home')
 
 @section('maincontent')
+<script>
+  function checkvoucher(amtTotal) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // document.getElementById("demo").innerHTML = this.responseText;
+        if(this.responseText)
+        {
+          varray=JSON.parse(this.responseText);
+          amtTotal=amtTotal.replace(",","");
+          discount=varray.Vpercentage;
+          newamount=parseFloat(amtTotal)-(parseFloat(amtTotal)*discount);
+          newamount=newamount.toLocaleString('en-US', { style: 'currency', currency: 'PHP' })
+          document.getElementById("voucherinfo").innerHTML="Discount:";
+          document.getElementById("vdiscount").innerHTML=(discount*100) +" %"
+          document.getElementById("newtotalinfo").innerHTML="Less: Discount New Total Amount:";
+          document.getElementById("vnewtotal").innerHTML=newamount;
+          document.getElementById("newtotalbutton").innerHTML=newamount;
+          document.getElementById("vinfo").style.display="block";
+          document.getElementById("discounttext").value=discount;
+        }
+        else
+        {
+          amtTotal=amtTotal.replace(",","");
+          amtTotal=parseFloat(amtTotal);
+          amtTotal=amtTotal.toLocaleString('en-US', { style: 'currency', currency: 'PHP' })
+          document.getElementById("newtotalbutton").innerHTML=amtTotal;
+          document.getElementById("discounttext").value="0";
+          document.getElementById("vinfo").style.display="none";
+        }
+
+        }
+      };
+    xhttp.open("GET", "/chkvoucher?discount=" +document.getElementById("discount").value, true);
+    xhttp.send();
+  }
+
+  
+</script>
 <br><br><br><br><br>
 
 
@@ -163,12 +202,27 @@
 
                         <div class="d-flex justify-content-between mb-4">
                           <p class="mb-2 text-white">Voucher Code:</p>
-                          <input type="text" id="discount" name="discount">
+                            <input type="text" id="discount" name="discount">
+                            <input type="hidden" id="discounttext" name="discounttext">
+                            <a class="btn btn-info" href="javascript:checkvoucher('{{ number_format($subtotal+75,2) }}')">Add </a>
+                        </div>
+                        
+                        <div id="vinfo" style="display: none">
+                          <div class="d-flex justify-content-between">
+                            <p class="mb-2 text-white" id="voucherinfo">Discount (20 %)</p>
+                            <p class="mb-2 text-white" id="vdiscount">Php 0.00</p>
+                          </div>
+
+                          <div class="d-flex justify-content-between">
+                            <p class="mb-2 text-white" id="newtotalinfo">New Total Amount</p>
+                            <p class="mb-2 text-white" id="vnewtotal">Php 0.00</p>
+                          </div>
+
                         </div>
 
                         <button type="submit" class="btn btn-info btn-block btn-lg">
                           <div class="d-flex justify-content-between">
-                            <span>Php {{ number_format($subtotal+75,2) }}</span>
+                            <span id="newtotalbutton">Php {{ number_format($subtotal+75,2) }}</span>
                             <span> Checkout <i class="fas fa fa-arrow-right ms-2"></i></span>
                           </div>
                         </button>
