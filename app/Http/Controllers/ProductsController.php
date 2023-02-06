@@ -43,8 +43,9 @@ class ProductsController extends Controller
     }
 
     public function DeleteVou(Request $request){
-        DB::delete("DELETE FROM vouchers WHERE id = " .$req->input('{{ $vchr->id }}'));
-        return redirect('/voucher');
+        // dd($request->input('vdelchrid'));
+        DB::delete("DELETE FROM vouchers WHERE id = " .$request->input('vdelchrid'));
+        return redirect('/voucherlist');
     }
 
         

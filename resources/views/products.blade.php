@@ -1,6 +1,11 @@
 @extends('dashboard')
+
+@section('content_title') Products @endsection
+@section('content_title_link') <a href="#" class="fw-normal"> Products </a> @endsection 
+
 @section('content')
 
+<div class="container-fluid">
 <a class='btn btn-primary' href="/addproduct">Add</a>
     <table class="table">
         <thead>
@@ -33,4 +38,5 @@
         @endforeach
         </tbody>
     </table>
+</div>
 @endsection

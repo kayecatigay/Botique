@@ -38,7 +38,8 @@ Route::get('/category/{catid}', function ($catid) {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $sales = DB::select('select * from sales order by id DESC LIMIT 5');
+    return view('admindashboard',['sales'=>$sales]);
 });
 
 Route::get('/RecentSales', function () {
@@ -67,10 +68,11 @@ Route::get('/users', function () {
     return view('users',['user'=>$users]);
 });
 
-Route::get('/deleteuser/{userid}', function ($userid) {
-    DB::table('users')->delete($userid);
+Route::post('/deleteuser', function (Request $request) {
+    // dd($request->input('deluserid'));
+    DB::table('users')->delete($request->input('deluserid'));
     //dd($users);
-    echo"User has been deleted!";
+    return redirect('/users');
 });
 
 Route::get('/productlist', function () {
@@ -110,8 +112,6 @@ Route::get('/addvoucher', function () {
     return view('addvoucher');
 });
 
-Route::get('/deletevoucher',[App\Http\Controllers\ProductsController::class, 'DeleteVou']);
-
 Route::get('/voucherlist', function () {
     $vouchers = DB::select('select * from vouchers');
     //dd($products);
@@ -126,10 +126,13 @@ Route::get('/editvoucher', function (Request $request) {
 });
 
 Route::get('/updatevoucher', function (Request $request) {
-    $updatevc=DB::update('update vouchers set Vcode="' .$request->input('vcode') .'",Vname="' .$request->input('vname') .'",Vpercentage=' .$request->input('vperc') .' ');
+    $updatevc=DB::update('update vouchers set Vcode="' .$request->input('vcode') .'",Vname="' .$request->input('vname') .'",Vpercentage=' .(floatval($request->input('vperc'))/100) .' where id=' .$request->input('vchid'));
     $vouchers = DB::select('select * from vouchers');
     return view('voucher',['voucher'=>$vouchers]);
 });
+
+
+Route::post('/deletevoucher',[App\Http\Controllers\ProductsController::class, 'DeleteVou']);
 
 Route::get('/return', function () {
     return view('return');

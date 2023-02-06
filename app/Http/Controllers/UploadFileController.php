@@ -20,12 +20,14 @@ class UploadFileController extends Controller {
       DB::insert('insert into products(productname,price,quantity,image,category) values("' .$request->input('txtname') .'",' .$request->input('txtprice') .',' .$request->input('txtqty') .',"' .$file->getClientOriginalName() .'","' .$request->input('category') .'") ');
       return redirect('/productlist');
    }
+
    public function index2(){
       return view('uploadvoucher');
    }
+
    public function showVoucher(Request $request) 
    {
-      DB::insert('insert into vouchers(Vcode,Vname,Vpercentage) values("' .$request->input('vcode') .'","' .$request->input('vname') .'",' .$request->input('vperc') .') ');
+      DB::insert('insert into vouchers(Vcode,Vname,Vpercentage) values("' .$request->input('vcode') .'","' .$request->input('vname') .'",' .(floatval($request->input('vperc'))/100) .') ');
       return redirect('/voucherlist');
    }
 }
