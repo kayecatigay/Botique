@@ -33,7 +33,8 @@ class HomeController extends Controller
 
     public function myorders()
     {
-        $sales = DB::select("select * from sales inner join status on sales.status=status.id where sales.user_id=" .Auth()->user()->id);
+        $sales = DB::select("select s.id as sid,s.order_num,s.user_id,s.total_num,s.status,stat.id as stid,stat.Sname from sales as s inner join status as stat on s.status=stat.id where s.user_id=" .Auth()->user()->id);
+        // dd($sales);
         return view('myorders',['salesinfo'=>$sales]);
     }
 

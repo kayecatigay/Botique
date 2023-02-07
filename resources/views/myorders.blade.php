@@ -10,17 +10,17 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h5 class="panel-title">
-          <a data-toggle="collapse" href="#collapse{{ $info->id }}" onclick="getOrders('{{$info->order_num }}','{{ $info->id }}','{{ $info->Sname }}')">
+          <a data-toggle="collapse" href="#collapse{{ $info->sid }}" onclick="getOrders('{{$info->order_num }}','{{$info->sid }}','{{ $info->Sname }}')">
               <div class="row alert alert-primary">
-                <div class="col"> <i class="bi bi-bag-heart"></i> Order Number: {{ $info-> order_num }}</div>
+                <div class="col"> <i class="bi bi-bag-heart"></i> Order Number: {{ $info->order_num }}</div>
                 <div class="col">Shipping Fee: 75.00</div>
                 <div class="col">Total Amount: {{ floatval($info-> total_num)-75 }}</div>
               </div>
             </a>
         </h5>
       </div>
-      <div id="collapse{{ $info->id }}" class="panel-collapse collapse">
-        <ul class="list-group" id="lstbody{{ $info->id }}" name="lstbody{{ $info->id }}">
+      <div id="collapse{{ $info->sid }}" class="panel-collapse collapse">
+        <ul class="list-group" id="lstbody{{ $info->sid }}" name="lstbody{{ $info->sid }}">
           ....
         </ul>
       </div>
@@ -29,7 +29,7 @@
     @php($allamount=floatval($allamount)+floatval($info->total_num))
   @endforeach
 
-  Total Amount: {{ $allamount}}
+  <div class="alert alert-info w-100 h5">Total Amount: Php {{ number_format($allamount,2)}}</div>
   
 
 </div>
@@ -58,10 +58,16 @@ function getOrders(orderid,lstid,status) {
                   ";
             }
       lstorders+="</table></div>";
-      lstorders+="<div class=' row container w-auto alert alert-danger'> \
-                <div class='col'><b>STATUS | </b></div> \
-                <div class='col text-left'><i class='bi bi-shop'></i> &emsp; ---" +status +"---&emsp;<i class='bi bi-house-heart'></i></div> \
-              </div>";
+      lstorders+="<div class='row container w-auto alert alert-danger'> \
+                    <div class='col text-left'><b>STATUS | </b> &emsp; \
+                        <i class='bi bi-shop h5'></i> &emsp; \
+                        <i class='bi bi-arrow-right'></i>   \
+                        <i class='bi bi-truck'></i> " +status 
+                        +" <i class='bi bi-truck'></i> "
+                        +" <i class='bi bi-arrow-right'></i> &emsp;  \
+                        <i class='bi bi-house-heart h5'></i> \
+                    </div> \
+                 </div>";
 
       document.getElementById("lstbody" +lstid).innerHTML=lstorders;
 
