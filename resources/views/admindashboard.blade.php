@@ -12,40 +12,38 @@
         <!--=========================================================== -->
         <!-- PRODUCTS YEARLY SALES -->
         <!-- ============================================================== -->
+        
         <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="white-box">
-                    <h3 class="box-title">Products Monthly Sales</h3>
+                    <h3 class="box-title">Products Monthly Sales </h3>
                     <div class="d-md-flex">
                         
                     </div>
                     <div>   
                         <canvas id="myChart" style="width:500%;max-width:700px"></canvas> 
                         <script>
-                            var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-                            var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+                        var xValues = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+                        var yValues = [{{$graphdata[1]}},{{$graphdata[2]}},{{$graphdata[3]}},{{$graphdata[4]}},{{$graphdata[5]}},{{$graphdata[6]}},{{$graphdata[7]}},{{$graphdata[8]}},{{$graphdata[9]}},{{$graphdata[10]}},{{$graphdata[11]}},{{$graphdata[12]}}];
 
-                            new Chart("myChart", {
-                            type: "line",
-                            data: {
-                                labels: xValues,
-                                datasets: [{
-                                fill: false,
-                                lineTension: 0,
-                                backgroundColor: "rgba(0,0,255,1.0)",
-                                borderColor: "#000000",
-                                data: yValues
-                                }]
-                            },
-                            options: {
-                                legend: {display: false},
-                                scales: {
-                                yAxes: [{ticks: {min: 6, max:16}}],
-                                }
-                            }
-                            });
+                        new Chart("myChart", {
+                        type: "line",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                            fill: false,
+                            lineTension: 0,
+                            backgroundColor: "rgba(0,0,255,1.0)",
+                            borderColor: "rgba(0,0,255,0.1)",
+                            data: yValues
+                            }]
+                        },
+                        options: {
+                            legend: {display: false},
+                            
+                        }
+                        });
                         </script>
-
                         
                     </div>
                 </div>

@@ -39,7 +39,21 @@ Route::get('/category/{catid}', function ($catid) {
 
 Route::get('/dashboard', function () {
     $sales = DB::select('select * from sales order by id DESC LIMIT 5');
-    return view('admindashboard',['sales'=>$sales]);
+    $salesgraph= DB::select('select month(date_sales) as dmonth,sum(total_num) as stotal from sales group by month(date_sales)');
+    $arraysales=[];
+    for ($x = 1; $x <= 12; $x++) 
+    {
+        $arraysales[$x]=0;
+        foreach ($salesgraph as $sg) 
+        {
+            if(intval($sg->dmonth)==$x)
+            {
+              $arraysales[$x]=$sg->stotal;
+              break;
+            }
+        }
+    }
+    return view('admindashboard',['sales'=>$sales,'graphdata'=>$arraysales]);
 });
 
 Route::get('/saleslist', function () {
