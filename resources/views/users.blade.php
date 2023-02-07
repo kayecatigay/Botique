@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-    @foreach ($user as $usr)
+      @foreach ($user as $usr)
           <tr>
               <th scope="row">{{ $usr->id }}</th>
               <td>{{ $usr->name }}</td>

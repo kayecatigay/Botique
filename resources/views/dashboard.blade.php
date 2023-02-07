@@ -162,7 +162,7 @@
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="voucherlist"
                                     aria-expanded="false">
-                                    <i class="fa fa-font" aria-hidden="true"></i>
+                                    <i class="fa fa-money" aria-hidden="true"></i>
                                     <span class="hide-menu">Voucher Codes</span>
                                 </a>
                             </li>
@@ -284,21 +284,31 @@
                                         <table class="table no-wrap">
                                             <thead>
                                                 <tr>
-                                                    <th class="border-top-0">#</th>
-                                                    <th class="border-top-0">Name</th>
-                                                    <th class="border-top-0">Status</th>
+                                                    <th class="border-top-0">Id</th>
+                                                    <th class="border-top-0">Order number</th>
+                                                    <th class="border-top-0">User Id</th>
+                                                    <th class="border-top-0">Address</th>
+                                                    <th class="border-top-0">Contact Number</th>
+                                                    <th class="border-top-0">Payment Type</th>
+                                                    <th class="border-top-0">Discount</th>
+                                                    <th class="border-top-0">Total Price</th>
                                                     <th class="border-top-0">Date</th>
-                                                    <th class="border-top-0">Price</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td class="txt-oflo">Elite admin</td>
-                                                    <td>SALE</td>
-                                                    <td class="txt-oflo">April 18, 2021</td>
-                                                    <td><span class="text-success">$24</span></td>
-                                                </tr>
+                                                @foreach ($sales as $s)
+                                                    <tr>
+                                                        <td>{{ $s->id }}</td>
+                                                        <td>{{ $s->order_num }}</td>
+                                                        <td class="txt-oflo">{{ $s->user_id }}</td>
+                                                        <td>{{ $s->address }}</td>
+                                                        <td>{{ $s->contact_num }}</td>
+                                                        <td>{{ $s->payment_type }}</td>
+                                                        <td>{{ $s->discount }}</td>
+                                                        <td><span class="text-success">Php {{ number_format ($s->total_num,2) }}</span></td>
+                                                        <td class="txt-oflo">{{ $s->date_sales }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

@@ -38,8 +38,12 @@ Route::get('/category/{catid}', function ($catid) {
 });
 
 Route::get('/dashboard', function () {
-    
     return view('dashboard');
+});
+
+Route::get('/RecentSales', function () {
+    $sales = DB::select('select * from sales');
+    return view('dashboard',['sales'=>$sales]);
 });
 
 Route::get('/home2', function () {
@@ -79,10 +83,6 @@ Route::get('/addproduct', function () {
     return view('addproduct');
 });
 
-Route::get('/addvoucher', function () {
-    return view('addvoucher');
-});
-
 Route::get('/insertproduct', function (Request $request) {
     DB::insert('insert into products(productname,price,quantity,image,category) values("' .$request->input('txtname') .'",' .$request->input('txtprice') .',' .$request->input('txtqty') .',"' .$request->input('txtupload') .'","' .$request->input('category') .'") ');
     return redirect('/productlist');
@@ -106,6 +106,12 @@ Route::get('/updateproduct', function (Request $request) {
 // return 'update products set productname="' .$request->input('txtname') .'",price=' .$request->input('txtprice') .',quantity=' .$request->input('txtqty') .' where productid=' .$request->input('txtid') .' ';
 });
 
+Route::get('/addvoucher', function () {
+    return view('addvoucher');
+});
+
+Route::get('/deletevoucher',[App\Http\Controllers\ProductsController::class, 'DeleteVou']);
+
 Route::get('/voucherlist', function () {
     $vouchers = DB::select('select * from vouchers');
     //dd($products);
@@ -120,13 +126,10 @@ Route::get('/editvoucher', function (Request $request) {
 });
 
 Route::get('/updatevoucher', function (Request $request) {
-    $updatedb=DB::update('update vouchers set Vcode="' .$request->input('vcode') .'",Vname="' .$request->input('vname') .'",Vpercentage=' .$request->input('vperc') .' ');
-    // return $name;
-    //DB::insert('insert into products(productname,price,quantity) values("dog",34,5)');
+    $updatevc=DB::update('update vouchers set Vcode="' .$request->input('vcode') .'",Vname="' .$request->input('vname') .'",Vpercentage=' .$request->input('vperc') .' ');
     $vouchers = DB::select('select * from vouchers');
     return view('voucher',['voucher'=>$vouchers]);
- // return 'update products set productname="' .$request->input('txtname') .'",price=' .$request->input('txtprice') .',quantity=' .$request->input('txtqty') .' where productid=' .$request->input('txtid') .' ';
- });
+});
 
 Route::get('/return', function () {
     return view('return');

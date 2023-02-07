@@ -24,6 +24,7 @@
                     <form action ="/editvoucher" method="get" enctype="multipart/form-data">
                         <input type="hidden" id="vchrid" name="vchrid" value="{{ $vchr->id }}"><br> 
                         <input type="submit" class="btn btn-info" value="Edit" name="submit">
+                        <a class='btn btn-danger' href="deletevoucher/{{ $vchr->id }}">Delete</a>
                     </form>
                 </td>
             </tr>

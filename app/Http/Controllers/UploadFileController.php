@@ -25,11 +25,7 @@ class UploadFileController extends Controller {
    }
    public function showVoucher(Request $request) 
    {
-      $file = $request->file('image');
-      //Move Uploaded File
-      $destinationPath = 'uploads';
-      $file->move($destinationPath,$file->getClientOriginalName());
-      DB::insert('insert into products(productname,price,quantity,image,category) values("' .$request->input('txtname') .'",' .$request->input('txtprice') .',' .$request->input('txtqty') .',"' .$file->getClientOriginalName() .'","' .$request->input('category') .'") ');
-      return redirect('/productlist');
+      DB::insert('insert into vouchers(Vcode,Vname,Vpercentage) values("' .$request->input('vcode') .'","' .$request->input('vname') .'",' .$request->input('vperc') .') ');
+      return redirect('/voucherlist');
    }
 }
