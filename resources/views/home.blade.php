@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -99,10 +100,10 @@
 								</ul>
 								<ul class="navbar_user">
 									<li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-									<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+									<li><a href="/myorders"><i class="bi bi-box2-heart-fill" data-toggle="tooltip" data-placement="bottom" title="My Orders"></i></a></li>
 									<li class="checkout">
 										<a href="cart">
-											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+											<i class="bi bi-bag-heart-fill" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="My Cart"></i>
 											@if (isset($countcart)) 
 												@if ($countcart>0) 
 												<span id="checkout_items" class="checkout_items"> {{ $countcart }} </span> 

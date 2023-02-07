@@ -172,6 +172,20 @@
                                     <span class="hide-menu">Voucher Codes</span>
                                 </a>
                             </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="saleslist"
+                                    aria-expanded="false">
+                                    <i class="bi bi-receipt"></i>
+                                    <span class="hide-menu">Sales</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="statuslist"
+                                    aria-expanded="false">
+                                    <i class="bi bi-receipt"></i>
+                                    <span class="hide-menu">Status</span>
+                                </a>
+                            </li>
                             
                         </ul>
 

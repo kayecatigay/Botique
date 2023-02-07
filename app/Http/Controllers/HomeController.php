@@ -30,4 +30,16 @@ class HomeController extends Controller
         return view('home',['products'=>$products,'countcart'=>count($cart)]);
         // return view('home');
     }
+
+    public function myorders()
+    {
+        $sales = DB::select("select * from sales inner join status on sales.status=status.id where sales.user_id=" .Auth()->user()->id);
+        return view('myorders',['salesinfo'=>$sales]);
+    }
+
+    public function orders($oid)
+    {
+        $orders = DB::select('select * from orders where ordernum="' .$oid  .'" and userid=' .Auth()->user()->id  );
+        return $orders;
+    }
 }

@@ -42,10 +42,46 @@ Route::get('/dashboard', function () {
     return view('admindashboard',['sales'=>$sales]);
 });
 
-Route::get('/RecentSales', function () {
+Route::get('/saleslist', function () {
     $sales = DB::select('select * from sales');
-    return view('dashboard',['sales'=>$sales]);
+    $status = DB::select('select * from status');
+    return view('sales',['sales'=>$sales,'xstatus'=>$status]);
 });
+
+Route::get('/editsales', function (request $request) {
+    $salesid=$request->input('sid');
+    $sales = DB::select('select * from sales where id=' .$salesid);
+    //dd($prod);
+    return view('editsales',['sales'=>$sales]); 
+});
+
+Route::get('/statuslist', function () {
+    $stat = DB::select('select * from status');
+    return view('status',['stat'=>$stat]);
+});
+
+Route::get('/addstat', function () {
+    return view('addstat');
+});
+
+Route::post('/uploadstatus', function (request $request) {
+    DB::insert('insert into status(Sname) values("' .$request->input('statname') .'") ');
+    return redirect('/statuslist');
+});
+
+Route::get('/editstat', function (request $request) {
+    $statid=$request->input('statid');
+    $stats = DB::select('select * from status where id=' .$statid);
+    //dd($prod);
+    return view('editstat',['stats'=>$stats]); 
+});
+
+Route::post('/updatestat', function (request $request) {
+    $updatestat=DB::update('update status set Sname="' .$request->input('statname'). '" where id='.$request->input('statid') .' ');
+    return redirect('/statuslist');
+});
+
+Route::post('/deletestat',[App\Http\Controllers\ProductsController::class, 'DeleteStat']);
 
 Route::get('/home2', function () {
     
@@ -146,6 +182,14 @@ Route::get('/shop', function () {
     return view('shop');
 });
 
+// Route::get('/test', function () {
+//     $sales = DB::select("select * from sales inner join status on sales.status=status.id where sales.user_id=" .Auth()->user()->id);
+//     dd($sales);
+//     return view('myorders',['salesinfo'=>$sales]);
+
+// });
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -165,6 +209,13 @@ Route::post('/deleteitem',[App\Http\Controllers\CartController::class, 'DeleteIt
 Route::get('/checkout',[App\Http\Controllers\ProductsController::class, 'CheckOut']);
 
 Route::get('/chkvoucher',[App\Http\Controllers\ProductsController::class, 'CheckVoucher']);
+
+Route::post('/updatesales',[App\Http\Controllers\ProductsController::class, 'UpdateSales']);
+
+Route::get('/myorders',[App\Http\Controllers\HomeController::class, 'myorders']);
+
+Route::get('/orders/{oid?}',[App\Http\Controllers\HomeController::class, 'orders']);
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

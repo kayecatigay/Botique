@@ -24,7 +24,7 @@ class ProductsController extends Controller
           }
         $allinsert=substr($allinsert,0,-1);
         DB::insert($allinsert);
-        DB::insert("insert into sales(order_num,user_id,address,contact_num,payment_type,discount,total_num,date_sales) values('" .$ordernum  ."'," .Auth()->user()->id .",'"  .$request->input('address') ."','" .$request->input('contact') ."','" .$request->input('payment') ."'," .$request->input('discounttext') .","  .$totalamount .",'" .Date("Y-m-d") ."')");
+        DB::insert("insert into sales(order_num,user_id,address,contact_num,payment_type,discount,total_num,date_sales,status) values('" .$ordernum  ."'," .Auth()->user()->id .",'"  .$request->input('address') ."','" .$request->input('contact') ."','" .$request->input('payment') ."'," .$request->input('discounttext') .","  .$totalamount .",'" .Date("Y-m-d") ."',0)");
         DB::delete("DELETE FROM cart WHERE userid = " .Auth()->user()->id);
 
         return redirect('/cart');  
@@ -48,5 +48,16 @@ class ProductsController extends Controller
         return redirect('/voucherlist');
     }
 
-        
+    public function DeleteStat(Request $request){
+        // dd($request->input('vdelchrid'));
+        DB::delete("DELETE FROM status WHERE id = " .$request->input('dels'));
+        return redirect('/statuslist');
+    }
+    
+    public function UpdateSales(request $request){
+        $updatestat=DB::update('update sales set status=' .$request->input('stat'). ' where id='.$request->input('salesid'));
+        return redirect('/saleslist');
+    }
+
+
 }
