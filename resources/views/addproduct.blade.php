@@ -1,4 +1,8 @@
 @extends('dashboard')
+
+@section('content_title') Products @endsection
+@section('content_title_link') <a href="#" class="fw-normal"> Products </a> @endsection 
+
 @section('content')
 
     <div class="container px-4 px-lg-5 mt-5">      

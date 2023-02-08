@@ -1,5 +1,6 @@
 @extends('home')
 @section('maincontent')
+    <br><br><br><br><br><br><br>
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -15,32 +16,33 @@
         <body>
             <div class="container contact-form">
                 <div class="contact-image">
-                    <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+                    <img src="plugins/images/logo-icon.png" width="80" alt="rocket_contact"/>
                 </div>
-                <form method="post">
-                    <h3>Drop Us a Message</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
-                            </div>
+                <h3>Drop us your feedback or personal suggestions. </h3>
+                <div class="container px-4 px-lg-5 mt-5">      
+                        
+                    {{ Form::open(array('url' => '/sentmessage','files'=>'true'))}}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name: </label>
+                            {{ Form::text('sname',null,['class' => 'form-control'])}}
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
-                            </div>
+                        <div class="form-group"> 
+                            <label for="exampleInputEmail1">Email: </label>
+                            {{ Form::text('semail',null,['class' => 'form-control'])}}
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group"> 
+                            <label for="exampleInputEmail1">Contact Number: </label>
+                            {{ Form::text('snumber',null,['class' => 'form-control'])}}
+                        </div>
+                        <div class="form-group"> 
+                            <label for="exampleInputEmail1">Your message: </label>
+                            {{ Form::text('message',null,['class' => 'form-control'])}}
+                        </div>
+                        {{ Form::submit('Save',['class' => 'btn btn-primary'])}}
+                    
+                    {{ Form::close()}}    
+                    <br><br><br><br>
+                </div>
             </div>
         </body>
     </html>

@@ -1,4 +1,8 @@
 @extends('dashboard')
+
+@section('content_title') Products @endsection
+@section('content_title_link') <a href="#" class="fw-normal"> Products </a> @endsection 
+
 @section('content')
     <form action ="updateproduct" method="get" enctype="multipart/form-data">
         

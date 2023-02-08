@@ -49,7 +49,7 @@
             <!-- ============================================================== -->
             <!-- Topbar header - style you can find in pages.scss -->
             <!-- ============================================================== -->
-            <header class="topbar" data-navbarbg="skin5">
+            <header class="topbar" data-navbarbg="skin5" >
                 <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                     <div class="navbar-header" data-logobg="skin6">
                         <!-- ============================================================== -->
@@ -81,7 +81,7 @@
                     <!-- ============================================================== -->
                     <!-- End Logo -->
                     <!-- ============================================================== -->
-                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5" >
                     
                         <!-- ============================================================== -->
                         <!-- Right side toggle and nav items -->
@@ -182,8 +182,15 @@
                             <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="statuslist"
                                     aria-expanded="false">
-                                    <i class="bi bi-receipt"></i>
+                                    <i class="bi bi-check-circle"></i>
                                     <span class="hide-menu">Status</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="feedbacklist"
+                                    aria-expanded="false">
+                                    <i class="bi bi-chat-dots"></i>
+                                    <span class="hide-menu">Feedback</span>
                                 </a>
                             </li>
                             

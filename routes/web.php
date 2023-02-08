@@ -192,8 +192,20 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::post('/sentmessage', function (request $request) {
+    DB::insert('insert into message(name,email,contactnum,messages) values("' .$request->input('sname'). '","' .$request->input('semail').'","' .$request->input('snumber').'","' .$request->input('message').'")');
+    return view('contact');
+});
+
+Route::get('/feedbacklist', function () {
+    $messages = DB::select('select * from message');
+    //dd($prod);
+    return view('feedback',['message'=>$messages]); 
+});
+
 Route::get('/shop', function () {
-    return view('shop');
+    $products = DB::select('select * from products');    
+    return view('shop',['products'=>$products]);
 });
 
 // Route::get('/test', function () {
